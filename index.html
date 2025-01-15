@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="scrollToSection('home')">Home</button></li>
+                <li><button onclick="scrollToSection('about')">About Me</button></li>
+                <li><button onclick="scrollToSection('contact')">Contact Me</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section">
+            <h1>Home</h1>
+            <p>Welcome to the Home section. Scroll or use the buttons above to navigate!</p>
+        </section>
+        <section id="about" class="section">
+            <h1>About Me</h1>
+            <p>This is the About Me section. Here you can write about yourself.</p>
+        </section>
+        <section id="contact" class="section">
+            <h1>Contact Me</h1>
+            <p>Feel free to reach out to me through this section.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

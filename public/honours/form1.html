@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <title>UI Preferences Study</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        #sampleText {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #sampleImage {
+            height: auto;
+            display: block;
+            max-width: 100%;
+            width: 250px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            bottom: 20px; 
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 90%; /* Ensure popup doesn't exceed screen width on small screens */
+        }
+
+        .popup-content {
+            max-width: 500px;
+            overflow-y: auto;
+        }
+           
+        .close-button {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #goToFormButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                justify-content: flex-start; /* Align controls to the left on smaller screens */
+            }
+            #goToFormButton {
+                display: none;
+            }
+
+            .popup {
+                width: calc(100% - 40px );
+                max-width: none;
+                left: 20px;
+                bottom: 20px;
+                box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            }
+         }
+
+         #instructionsPopup { /* ensures the instructions popup isn't affected by max-width set for sizePopup */
+            max-width: 500px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome to my survey</h1>
+        <div class="button-container">
+            <button onclick="openInstructionsPopup()">Instructions</button>
+            <button onclick="openPrivacyPopup()">Data Privacy</button>
+            <button onclick="openVideoPopup()">Watch Video</button>
+        </div>
+    </div>
+
+
+        <!-- Instructions Popup -->
+    <div id="instructionsPopup" class="popup">
+        <span class="close-button" onclick="closePopup('instructionsPopup')">&times;</span>
+        <div class="popup-content">
+            <h2>Instructions</h2>
+            <p>Use the sliders or buttons to adjust the size of the text and image to your preference. Then, proceed to fill out the Google Form below.</p>
+        </div>
+    </div>
+
+    <!-- Data Privacy Popup -->
+    <div id="privacyPopup" class="popup">
+        <span class="close-button" onclick="closePopup('privacyPopup')">&times;</span>
+        <div class="popup-content">
+            <h2>Data Privacy Agreement</h2>
+            <p>By participating in this survey, you agree to the collection and use of your data for research purposes.</p>
+        </div>
+    </div>
+
+    <!-- Video Popup -->
+    <div id="videoPopup" class="popup">
+        <span class="close-button" onclick="closePopup('videoPopup')">&times;</span>
+        <div class="popup-content">
+            <h2>How to Fill the Form</h2>
+            <iframe
+                src="https://www.youtube.com/watch?v=vdhWgEgtcK4"
+                title="How to Fill the Form"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <label for="textSizeSlider">Text Size: <span id="textSize">16</span>px</label>
+            <input type="range" min="10" max="50" value="16" id="textSizeSlider">
+            <button onclick="adjustText(-1)">-</button>
+            <button onclick="adjustText(1)">+</button>
+        </div>
+
+        <div class="sample-text" id="sampleText">
+            Sample text for testing readability
+        </div>
+
+        <div class="controls" style="padding-top: 10%;">
+            <label for="imageSizeSlider">Image Size: <span id="imageScale">100</span>%</label>
+            <input type="range" min="50" max="200" value="100" id="imageSizeSlider">
+            <button onclick="adjustImage(-10)">-</button>
+            <button onclick="adjustImage(10)">+</button>
+        </div>
+
+        <img src="sample.jpeg" alt="Houses" id="sampleImage" class="sample-image">
+
+        <button id="goToFormButton">Go to Form</button>
+
+        <div id="sizePopup" class="popup">
+        <div class="popup-content">
+            Chosen text size: <span style="color: rgb(40, 13, 105);" id="popupTextSize"></span>px<br>
+            Chosen image size: <span style="color: rgb(40, 13, 105);" id="popupImageScale"></span>%
+            <p style="color: rgb(89, 87, 94);"> If you want to change the size</p>
+            <p style="color: rgb(89, 87, 94);"> simply scroll up</p>
+            </div>
+        </div>
+
+        <iframe style="height: 1000px; margin-top: 10%;" src="https://docs.google.com/forms/d/e/1FAIpQLSdC_bE3daA3xs5yz-ULVJY_LYPHItZp9wMoK_0YXM_KXsKOWg/viewform?usp=header" title="Google Form" id="formIframe"></iframe>
+    </div>
+
+    <script>
+        function openInstructionsPopup() {
+            document.getElementById('instructionsPopup').style.display = 'block';
+        }
+    
+        function openPrivacyPopup() {
+            document.getElementById('privacyPopup').style.display = 'block';
+        }
+    
+        function openVideoPopup() {
+            document.getElementById('videoPopup').style.display = 'block';
+        }
+    
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    
+        const textSizeSlider = document.getElementById('textSizeSlider');
+        const textSizeDisplay = document.getElementById('textSize');
+        const sampleText = document.getElementById('sampleText');
+    
+        textSizeSlider.addEventListener('input', () => {
+            const newSize = textSizeSlider.value;
+            textSizeDisplay.textContent = newSize;
+            sampleText.style.fontSize = newSize + 'px';
+        });
+    
+        function adjustText(change) {
+            let fontSize = parseInt(textSizeDisplay.textContent);
+            fontSize += change;
+            fontSize = Math.max(10, Math.min(50, fontSize));
+            textSizeDisplay.textContent = fontSize;
+            sampleText.style.fontSize = fontSize + 'px';
+            textSizeSlider.value = fontSize;
+        }
+    
+        let imageScale = 100;
+        const imageSizeSlider = document.getElementById('imageSizeSlider');
+        const imageScaleDisplay = document.getElementById('imageScale');
+        const sampleImage = document.getElementById('sampleImage');
+    
+        imageSizeSlider.addEventListener('input', () => {
+            const newScale = imageSizeSlider.value;
+            imageScaleDisplay.textContent = newScale;
+            imageScale = newScale;
+            sampleImage.style.width = (250 * newScale / 100) + 'px';
+        });
+    
+        function adjustImage(change) {
+            imageScale += change;
+            imageScale = Math.max(50, Math.min(200, imageScale));
+            imageScaleDisplay.textContent = imageScale;
+            sampleImage.style.width = (250 * imageScale / 100) + 'px';
+            imageSizeSlider.value = imageScale;
+        }
+    
+        const goToFormButton = document.getElementById('goToFormButton'); // Make sure this ID matches your button's ID
+        const formIframe = document.getElementById('formIframe'); // Make sure this ID matches your iframe's ID
+
+        goToFormButton.addEventListener('click', () => {
+        formIframe.scrollIntoView({ behavior: 'smooth' });
+        });
+
+
+        const sizePopup = document.getElementById('sizePopup');
+        const popupTextSize = document.getElementById("popupTextSize");
+        const popupImageScale = document.getElementById("popupImageScale");
+    
+        goToFormButton.addEventListener('click', () => {
+            formIframe.scrollIntoView({ behavior: 'smooth' });
+            popupTextSize.textContent = textSizeDisplay.textContent;
+            popupImageScale.textContent = imageScaleDisplay.textContent;
+            sizePopup.style.display = 'block';
+        });
+    </script>    
+
+</body>
+</html>

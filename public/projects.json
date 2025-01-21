@@ -1,0 +1,44 @@
+[
+    {
+        "title": "DATA VISUALIZATION",
+        "description": "An interactive research between Education and Addiction",
+        "img": "images/dataviz.png",
+        "link": "https://github.com/DefoNotGus/DV_assesment"
+    },
+    {
+        "title": "Mobile App",
+        "description": "This is my personal Zodiac Sign app for Android",
+        "img": "images/yourdestiny.png",
+        "link": "https://github.com/DefoNotGus/YourDestiny"
+    },
+    {
+        "title": "NLP IN IMDb",
+        "description": "A NLP ML-Model to classify Movie reviews",
+        "img": "images/NLP.png",
+        "link": "https://github.com/DefoNotGus/NPLinIMDb"
+    },
+    {
+        "title": "SoundIT",
+        "description": "A simple python program to detach audio from videos",
+        "img": "images/soundit.png",
+        "link": "https://github.com/DefoNotGus/SoundIT"
+    },
+    {
+        "title": "LeaveIt2Me",
+        "description": "My first PHP website",
+        "img": "images/tavotech.png",
+        "link": "https://tavotech.altervista.org/"
+    },
+    {
+        "title": "5 Travel Adventures",
+        "description": "A static website prototype and a nice memory of a college group project.",
+        "img": "images/5ta.png",
+        "link": "https://tavotech.altervista.org/RoDaGuMiMa/home.html"
+    },
+    {
+        "title": "Gamersden",
+        "description": "A PHP website used to emulate a an inventory system",
+        "img": "images/gamersden.png",
+        "link": "https://tavotech.altervista.org/Gamersden/main.php"
+    }
+]

@@ -3,16 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Steam Recent Games</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Steam Public Data Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #0e1d31;
+      color: #f5f5f5;
+    }
+    h1 {
+      margin: 30px 0;
+    }
+    pre {
+      text-align: left;
+      display: inline-block;
+      background: #222;
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 90%;
+      overflow-x: auto;
+    }
+    .error {
+      color: #e4ff6b;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>My Steam Profile</h1>
-  <div id="profile">
-    <img id="profile-icon" src="" alt="Steam Profile Icon">
-  </div>
-  <h2>Last 5 Played Games</h2>
-  <div id="game-list"></div>
-  <script src="script.js"></script>
+  <h1>Steam Public Data Viewer</h1>
+  <div id="output">Fetching data...</div>
+
+  <script>
+    // Replace with your Steam API Key and Steam User ID
+    const apiKey = "D7471095AF877FF0A9ADC71B9D8C74A0";
+    const steamUserId = "76561198858318960";
+
+    // Function to fetch public steam data
+    async function fetchSteamData() {
+      const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${apiKey}&steamids=${steamUserId}`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Get the player data
+        const player = data.response.players[0];
+        if (player) {
+          displayData(player);
+        } else {
+          document.getElementById('output').innerHTML =
+            '<p class="error">No player data found for this ID.</p>';
+        }
+      } catch (error) {
+        document.getElementById('output').innerHTML =
+          `<p class="error">Error fetching data: ${error.message}</p>`;
+      }
+    }
+
+    // Function to display the data on the page
+    function displayData(player) {
+      document.getElementById('output').innerHTML = `
+        <h2>Player Information:</h2>
+        <pre>${JSON.stringify(player, null, 2)}</pre>
+      `;
+    }
+
+    // Fetch the data when the page loads
+    fetchSteamData();
+  </script>
 </body>
 </html>

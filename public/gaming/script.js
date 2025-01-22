@@ -1,4 +1,4 @@
-const API_KEY = "4791E7D2FF6D8078ADF042D9F8768DFF"; 
+const API_KEY = "304737FE084545CEBB718C5DD1A54053"; 
 const STEAM_ID = "76561198858318960"; 
 
 const profileIcon = document.getElementById("profile-icon");

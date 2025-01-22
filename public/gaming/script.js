@@ -1,64 +1,42 @@
-const API_KEY = "304737FE084545CEBB718C5DD1A54053"; 
-const STEAM_ID = "76561198858318960"; 
+// Reference to the collection container
+const collectionDiv = document.getElementById('collection');
 
-const profileIcon = document.getElementById("profile-icon");
-const gameListDiv = document.getElementById("game-list");
-
-async function fetchProfileData() {
-  try {
-    // Fetch profile summary (like profile avatar)
-    const profileResponse = await fetch(
-      `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${API_KEY}&steamids=${STEAM_ID}`
-    );
-    const profileData = await profileResponse.json();
-    const player = profileData.response.players[0];
-
-    if (player) {
-      profileIcon.src = player.avatarfull; // Use the full-size Steam avatar.
-      profileIcon.alt = player.personaname; // Set the alt to the player's Steam name.
-    } else {
-      profileIcon.alt = "Profile not found.";
+// Fetch games from local JSON file `games.json`
+fetch('games.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch games.json');
     }
-  } catch (error) {
-    console.error("Error fetching profile:", error);
-    profileIcon.alt = "Error loading profile.";
+    return response.json();
+  })
+  .then(games => {
+    generateGameCollection(games);
+  })
+  .catch(error => {
+    collectionDiv.innerHTML = `<p class="error">An error occurred: ${error.message}</p>`;
+  });
+
+/**
+ * Generate the game collection as a grid of items.
+ * @param {Array} games - List of games from the JSON.
+ */
+function generateGameCollection(games) {
+  if (!Array.isArray(games)) {
+    collectionDiv.innerHTML = `<p class="error">Invalid games data</p>`;
+    return;
   }
+
+  const gameItemsHTML = games.map(game => `
+    <div class="game-item">
+      <img src="${game.image}" alt="${game.name}">
+      <div class="details">
+        <h2>${game.name}</h2>
+        <p>Genre: ${game.genre}</p>
+        <p>Personal Rate: ${game["Personal Rate"]}</p> 
+      </div>
+    </div>
+  `).join('');
+
+  collectionDiv.innerHTML = gameItemsHTML;
 }
 
-async function fetchRecentGames() {
-  try {
-    // Fetch recent games
-    const gameResponse = await fetch(
-      `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=${API_KEY}&steamid=${STEAM_ID}`
-    );
-    const data = await gameResponse.json();
-    const games = data.response.games || [];
-
-    if (games.length === 0) {
-      gameListDiv.innerHTML = "<p>No recent games found or profile is private.</p>";
-      return;
-    }
-
-    const recentGames = games.slice(0, 5); // Get the last 5 games.
-    const gameListHtml = recentGames
-      .map(
-        (game) => `
-        <div class="game">
-          <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/${game.appid}/${game.img_logo_url}.jpg" alt="${game.name}" />
-          <p>${game.name}</p>
-          <p>Playtime: ${(game.playtime_forever / 60).toFixed(2)} hours</p>
-        </div>
-      `
-      )
-      .join("");
-
-    gameListDiv.innerHTML = gameListHtml;
-  } catch (error) {
-    console.error("Error fetching recent games:", error);
-    gameListDiv.innerHTML = "<p>Something went wrong. Please try again later.</p>";
-  }
-}
-
-// Fetch both profile and games when the page loads
-fetchProfileData();
-fetchRecentGames();

@@ -1,6 +1,5 @@
 [
-    {"name": "Video Games", "colour": "#ff5722", "link": "notready.html"},
+    {"name": "Video Games", "colour": "#ff5722", "link": "gaming/index.html"},
     {"name": "Teaching", "colour": "#4caf50", "link": "notready.html"},
-    {"name": "Trips", "colour": "#03a9f4", "link": "notready.html"},
-    {"name": "Media", "colour": "#9c27b0", "link": "notready.html"}
+    {"name": "Trips", "colour": "#03a9f4", "link": "notready.html"}
 ]

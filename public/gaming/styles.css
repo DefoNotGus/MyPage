@@ -1,0 +1,117 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1b2838; /* Dark Steam-like background */
+    color: #c7d5e0; /* Light text, Steam-inspired */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: centre;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Circular profile icon */
+    border: 3px solid #66c0f4; /* Steam blue border */
+    margin-bottom: 15px;
+}
+
+.profile h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: centre;
+}
+
+.profile p {
+    font-size: 16px;
+    color: #acb2b8; /* Subtle grey for description and lesser info */
+}
+
+/* Games List */
+.games-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns on wider screens */
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.games-list li {
+    background-color: #2a475e; /* Slightly lighter than the background */
+    border: 2px solid #171a21; /* Darker border */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.games-list li:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.games-list img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Ensures game thumbnail looks clean */
+}
+
+.games-list .game-info {
+    padding: 15px;
+}
+
+.games-list .game-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap; /* Truncate game title if too long */
+}
+
+.games-list .game-info p {
+    font-size: 14px;
+    color: #acb2b8;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .games-list {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    }
+
+    .profile img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile h1 {
+        font-size: 20px;
+    }
+}

@@ -3,7 +3,7 @@
         "title": "DATA VISUALIZATION",
         "description": "An interactive research between Education and Addiction",
         "img": "images/dataviz.png",
-        "link": "https://github.com/DefoNotGus/DV_assesment"
+        "link": "docs/dataviz.html"
     },
     {
         "title": "Mobile App",
@@ -40,5 +40,11 @@
         "description": "A PHP website used to emulate a an inventory system",
         "img": "images/gamersden.png",
         "link": "https://tavotech.altervista.org/Gamersden/main.php"
+    },
+    {
+        "title": "AND MORE!",
+        "description": "Check out my github profile.",
+        "img": "images/github.png",
+        "link": "https://github.com/DefoNotGus/"
     }
 ]

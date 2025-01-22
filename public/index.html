@@ -50,11 +50,13 @@
 
             <div class="projects-grid" id="projects-container"></div>
 
-            <div class="honours-project">
-                <h2>Honours Project</h2>
-                <img src="images/honours.png" alt="Honours Project Image">
-                <p>Highlighting significant achievements and research projects.</p>
-            </div>
+            <a href="honours/index.html" class="honours-project-link">
+                <div class="honours-project">
+                    <h2>Honours Project</h2>
+                    <img src="images/honours.png" alt="Honours Project Image">
+                    <p>Check out my biggest project so far!</p>
+                </div>
+            </a>
 
             <div class="hobbies-banner">
                 <h2>My Hobbies</h2>
@@ -65,18 +67,23 @@
         <!-- Contact Section -->
         <section id="contact" class="section visible"> <!-- Add "visible" here -->
             <h1>Contact Me</h1>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-
+            <p>This comunication is not protected!</p>
+            <!-- modify this form HTML and place wherever you want your form -->
+                <form
+                action="https://formspree.io/f/xbldrayw"
+                method="POST"
+                >
+                <label>
+                Your email:
+                <input type="email" name="email">
+                </label>
+                <label>
+                Your message:
+                <textarea name="message"></textarea>
+                </label>
+                <!-- your other form fields go here -->
                 <button type="submit">Send</button>
-            </form>
+                </form>
         </section>
     </main>
 

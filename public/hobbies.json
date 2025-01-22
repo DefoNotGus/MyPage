@@ -1,6 +1,6 @@
 [
-    {"name": "Video Games", "colour": "#ff5722", "link": "https://example.com/videogames"},
-    {"name": "Teaching", "colour": "#4caf50", "link": "https://example.com/teaching"},
-    {"name": "Trips", "colour": "#03a9f4", "link": "https://example.com/trips"},
-    {"name": "Media", "colour": "#9c27b0", "link": "https://example.com/media"}
+    {"name": "Video Games", "colour": "#ff5722", "link": "notready.html"},
+    {"name": "Teaching", "colour": "#4caf50", "link": "notready.html"},
+    {"name": "Trips", "colour": "#03a9f4", "link": "notready.html"},
+    {"name": "Media", "colour": "#9c27b0", "link": "notready.html"}
 ]

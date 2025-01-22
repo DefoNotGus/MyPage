@@ -110,7 +110,7 @@ function loadHobbies() {
 
                 // Add the HTML content with the title and link
                 hobbyCard.innerHTML = `
-                    <a href="${hobby.link}" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="${hobby.link}" target="_self" style="text-decoration: none; color: inherit;">
                         <span>${hobby.name}</span>
                     </a>
                 `;

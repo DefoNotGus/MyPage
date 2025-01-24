@@ -95,4 +95,34 @@ nav #backbutton:hover {
     transform: scale(1.05);
     transition: all 0.3s ease;
   }
+
+  .game-item img {
+    width: 100%; /* Default image width */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.game-item:hover img {
+    transform: scale(1); /* Initial state */
+    transition-delay: 0.5s;
+    transform: scale(1.1); /* Scale the image slightly */
+}
+
   
+  @media (max-width: 768px) {
+    #collection {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Centre the items */
+    }
+
+    .game-item {
+        width: 100%; /* Full-width for small screens */
+        max-width: 300px; /* Optional: Limit width if needed */
+        margin-bottom: 20px; /* Add spacing between items */
+    }
+
+    .game-item img {
+        width: 100%; /* Ensure images scale properly */
+        height: auto; /* Maintain aspect ratio */
+    }
+}

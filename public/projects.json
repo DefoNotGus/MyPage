@@ -1,5 +1,11 @@
 [
     {
+        "title": "RGU Hack 2025",
+        "description": "A challenge done in 24 hours-ish!",
+        "img": "images/rguhack25.png",
+        "link": "rguhack2025/index.html"
+    },
+    {
         "title": "DATA VISUALIZATION",
         "description": "An interactive research between Education and Addiction",
         "img": "images/dataviz.png",

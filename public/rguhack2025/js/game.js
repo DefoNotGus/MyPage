@@ -65,6 +65,8 @@ function handleEmojiInput(event) {
         let input = document.getElementById("game-input").value.trim();
         let emoji;
 
+        input = resolveAlias(input)
+
         switch (input) {
             case "1":
             case "🦜":
@@ -390,6 +392,7 @@ function processCommand() {
             }
 
             if (health <= 0) {
+                displayMessage("☠️You lost too much health")
                 resetGame();
                 return;
             }
@@ -400,6 +403,7 @@ function processCommand() {
                 health -= 40;
                 displayMessage(`⚠️ The ${item} is causing problems! You lost 40% health.`);
                 if (health <= 0) {
+                    displayMessage("☠️You lost too much health")
                     resetGame();
                     return;
                 }

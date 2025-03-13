@@ -98,7 +98,7 @@ function activateRainEffect() {
         document.body.style.backgroundImage = `url(${rainImage.src})`;
         document.body.style.opacity = '1.2';
     };
-    ['.project-card', '.honours-project', '.hobbies-banner', 'form','.home-content'].forEach(selector => {
+    ['.project-card', '.honours-project', '.hobbies-banner', 'form'].forEach(selector => {
         document.querySelectorAll(selector).forEach(element => {
             element.style.backgroundColor = '#320f39';
         });
@@ -170,6 +170,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === konamiCode[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {
+            activateRainEffect(); // Call activateRainEffect directly
             konamiIndex = 0;
         }
     } else {

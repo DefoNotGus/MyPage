@@ -1,5 +1,11 @@
 [
     {
+        "title": "TinyTales",
+        "description": "A full-stack web application to create and share stories.",
+        "img": "images/tinytales.png",
+        "link": "http://tinytales.westus.cloudapp.azure.com/login"
+    },
+    {
         "title": "RGU Hack 2025",
         "description": "A challenge done in 24 hours-ish!",
         "img": "images/rguhack25.png",

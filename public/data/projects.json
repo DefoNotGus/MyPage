@@ -1,11 +1,19 @@
 [
+    {
+		"title": "MAUI",
+		"image": "/images/honours.png/",
+		"description": "An intelligent system powered by machine learning that analyzes user requirements and suggests optimal UI component sizes to enhance usability and accessibility.",
+		"url": "/honours/index.html",
+		"emojis": ["👓", "🤖"],
+		"tools": ["Python", "Flask", "sickit-learn", "LaTeX"]
+	},
 	{
 		"title": "TinyTales",
 		"image": "images/tinytales.png",
 		"description": "A full-stack web platform engineered to enable users to author, publish, and share their own narrative content.",
 		"url": "http://tinytales.westus.cloudapp.azure.com/login",
 		"emojis": ["📖", "🌐"],
-		"tools": ["Vue", "node.js", "MongoDB"]
+		"tools": ["Vue", "express", "node.js", "MongoDB"]
 	},
 	{
 		"title": "RGU Hack 2025",
@@ -37,7 +45,7 @@
 		"description": "Engineered a Natural Language Processing (NLP) machine learning model to perform sentiment analysis on IMDb movie reviews.",
 		"url": "https://github.com/DefoNotGus/NPLinIMDb",
 		"emojis": ["🤖", "🎬"],
-		"tools": ["Python", "Natural Language Processing", "matplotlib", "sickit-learn", "pandas"]
+		"tools": ["Python", "NLP", "matplotlib", "sickit-learn", "pandas"]
 	},
 	{
 		"title": "SoundIT",

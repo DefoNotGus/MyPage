@@ -1,7 +1,7 @@
 [
     {
 		"title": "MAUI",
-		"image": "/images/honours.png/",
+		"image": "images/honours.png/",
 		"description": "An intelligent system powered by machine learning that analyzes user requirements and suggests optimal UI component sizes to enhance usability and accessibility.",
 		"url": "/honours/index.html",
 		"emojis": ["👓", "🤖"],

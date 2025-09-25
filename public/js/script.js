@@ -222,8 +222,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
             });
 
-            // Re-initialize event listeners after projects are loaded
-            const accordionCards = document.querySelectorAll('.project-accordion-card');
+            setupAccordionBehavior();
+            updateTechIcons();
+
+        } catch (error) {
+            console.error('Error loading projects:', error);
+            projectsContainer.innerHTML = '<p class="text-white">Could not load projects.</p>';
+        }
+    };
+
+    const setupAccordionBehavior = () => {
+        const accordionCards = document.querySelectorAll('.project-accordion-card');
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (isMobile) {
+            // Mobile: Use Intersection Observer to activate card when it's centered in the viewport.
+            const observerOptions = {
+                root: document.querySelector('.accordion-scroll-container'),
+                rootMargin: '0px',
+                threshold: 0.5 // Activate when 50% of the card is visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        accordionCards.forEach(c => c.classList.remove('active'));
+                        entry.target.classList.add('active');
+                        updateTechIcons();
+                    }
+                });
+            }, observerOptions);
+
+            accordionCards.forEach(card => observer.observe(card));
+
+        } else {
+            // Desktop: Click to expand functionality.
             accordionCards.forEach(card => {
                 card.addEventListener('click', () => {
                     if (card.classList.contains('active')) return;
@@ -232,16 +265,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateTechIcons();
                 });
             });
-
-            updateTechIcons();
-
-        } catch (error) {
-            console.error('Error loading projects:', error);
-            projectsContainer.innerHTML = '<p class="text-white">Could not load projects.</p>';
         }
     };
     
     loadProjects();
 
-});
+    // --- Logo Modal Logic (moved from index.html) ---
+    const logoThumb = document.getElementById('logo-thumb');
+    const logoModal = document.getElementById('logo-modal');
 
+    if (logoThumb && logoModal) {
+        logoThumb.addEventListener('click', () => {
+            logoModal.style.display = 'flex';
+        });
+
+        logoModal.addEventListener('click', (e) => {
+            // Close modal if the background is clicked, but not the image itself
+            if (e.target === logoModal) {
+                logoModal.style.display = 'none';
+            }
+        });
+    }
+});
